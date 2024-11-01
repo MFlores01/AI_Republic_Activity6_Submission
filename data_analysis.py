@@ -260,10 +260,16 @@ def app():
         # Append assistant's reply
         st.session_state.messages.append({"role": "assistant", "content": reply})
 
-    # Display conversation history
+    # Display conversation history with custom icons
     for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
+        if message["role"] == "assistant":
+            # Use custom icon for the assistant
+            with st.chat_message("assistant", avatar="images/Casein_Nitrate.jpg"):
+                st.markdown(message["content"])
+        else:
+            # Use custom icon for the user
+            with st.chat_message("user", avatar="images/User.jpg"):
+                st.markdown(message["content"])
 
 # Uncomment this line to run the app directly if needed
 # app()
