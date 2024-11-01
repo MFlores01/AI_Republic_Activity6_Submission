@@ -1,13 +1,43 @@
 import streamlit as st
 import openai
+import pandas as pd
+from io import StringIO
+from docx import Document
+import PyPDF2
+
+
+
+def read_docx(file):
+    doc = Document(file)
+    full_text = []
+    for para in doc.paragraphs:
+        full_text.append(para.text)
+    return '\n'.join(full_text)
+
+def read_pdf(file):
+    pdf_reader = PyPDF2.PdfFileReader(file)
+    text = []
+    for page_num in range(pdf_reader.numPages):
+        page = pdf_reader.getPage(page_num)
+        text.append(page.extractText())
+    return "\n".join(text)
 
 def app():
-
     uploaded_file = st.file_uploader("Upload your thesis/proposal document (Text files only):", type=["txt", "docx", "pdf"])
 
     if uploaded_file:
-        text_content = uploaded_file.read().decode("utf-8")
+        # Determine file type and read content accordingly
+        if uploaded_file.type == "text/plain":
+            text_content = uploaded_file.read().decode("utf-8")
+        elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            text_content = read_docx(uploaded_file)
+        elif uploaded_file.type == "application/pdf":
+            text_content = read_pdf(uploaded_file)
+        else:
+            st.error("Unsupported file format.")
+            return
 
+        # Generate response using OpenAI API
         analysis_response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
             messages=[
@@ -18,3 +48,4 @@ def app():
         )
         st.write("Defense Preparation Feedback:")
         st.write(analysis_response.choices[0].message['content'].strip())
+

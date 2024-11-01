@@ -4,10 +4,18 @@ import openai
 
 def app():
     # Display a header and brief description of Gilgamesh's role
-    st.title("Talk to Gilgamesh!")
-    st.write(
-        "Gilgamesh is a friendly and highly knowledgeable scientist researcher with expertise in Data Science, Computer Science, Linguistics, Social Science, Mathematics, and other fields. Here to guide you through every stage of your research paper.")
-
+    # Translucent background with title and description
+    st.markdown(
+        """
+        <div style='background-color: rgba(0,0,0,0.7); padding: 20px; border-radius: 10px; text-align: center;'>
+            <h1 style='color: #FAFAF0; text-align: left;'>Talk to Gilgamesh!</h1>
+            <p style='color: #FAFAF0; text-align: left;'>
+                Gilgamesh is a friendly and highly knowledgeable scientist researcher with expertise in Data Science, Computer Science, Linguistics, Social Science, Mathematics, and other fields. Here to guide you through every stage of your research paper.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     # Define the comprehensive system prompt for Gilgamesh
     system_prompt = """
     You are Gilgamesh, a friendly and highly knowledgeable scientist researcher with a PhD in fields spanning Data Science, Computer Science, Linguistics, Social Science, Mathematics, Biology, Medical Technology, Optometry, Pharmacy, Computer Engineering, Information Technology, Artificial Intelligence, Data Analytics, and more. Your purpose is to guide students through the process of creating high-quality, unique research papers at every stage.

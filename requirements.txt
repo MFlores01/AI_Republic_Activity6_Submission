@@ -9,3 +9,8 @@ langchain
 langchain_community
 scipy
 scikit-learn
+PyPDF2
+bokeh
+docx
+Document
+seaborn
