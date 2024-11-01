@@ -3,7 +3,6 @@ import openai
 from docx import Document
 import PyPDF2
 
-
 # Function to read DOCX file
 def read_docx(file):
     doc = Document(file)
@@ -11,7 +10,6 @@ def read_docx(file):
     for para in doc.paragraphs:
         full_text.append(para.text)
     return '\n'.join(full_text)
-
 
 # Function to read PDF file
 def read_pdf(file):
@@ -22,18 +20,14 @@ def read_pdf(file):
         text.append(page.extractText())
     return "\n".join(text)
 
-
 # Initialize chat session for defense preparation
 if "defense_prep_messages" not in st.session_state:
     st.session_state.defense_prep_messages = []
 
-
 # Main app logic for defense preparation
 def app():
-
     # File upload for defense preparation
-    uploaded_file = st.file_uploader("Upload your thesis/proposal document (Text files only):",
-                                     type=["txt", "docx", "pdf"])
+    uploaded_file = st.file_uploader("Upload your thesis/proposal document (Text files only):", type=["txt", "docx", "pdf"])
 
     # Display feedback if a file is uploaded
     if uploaded_file:
@@ -52,10 +46,8 @@ def app():
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system",
-                 "content": "You are a research assistant providing feedback for defense preparation."},
-                {"role": "user",
-                 "content": f"Review the following thesis document and provide comprehensive feedback for a defense preparation, including potential questions and critique points:\n\n{text_content[:1000]}"}
+                {"role": "system", "content": "You are a research assistant providing feedback for defense preparation."},
+                {"role": "user", "content": f"Review the following thesis document and provide comprehensive feedback for a defense preparation, including potential questions and critique points:\n\n{text_content[:1000]}"}
             ],
             max_tokens=700
         )
@@ -81,15 +73,14 @@ def app():
         st.session_state.defense_prep_messages.append({"role": "user", "content": prompt})
 
         # Display user message in chat message container
-        with st.chat_message("user"):
+        with st.chat_message("user", avatar="images/User.jpg"):
             st.markdown(prompt)
 
         # Get response from OpenAI
-        with st.chat_message("assistant"):
+        with st.chat_message("assistant", avatar="images/Gilgamesh.jpg"):
             response = openai.ChatCompletion.create(
                 model="gpt-4o-mini",
-                messages=[{"role": "system",
-                           "content": "You are a helpful research assistant for defense preparation."}] + st.session_state.defense_prep_messages,
+                messages=[{"role": "system", "content": "You are a helpful research assistant for defense preparation."}] + st.session_state.defense_prep_messages,
                 max_tokens=700,
                 temperature=1.0
             )
