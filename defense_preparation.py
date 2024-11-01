@@ -20,12 +20,12 @@ def read_pdf(file):
         text.append(page.extractText())
     return "\n".join(text)
 
-# Initialize chat session for defense preparation
-if "defense_prep_messages" not in st.session_state:
-    st.session_state.defense_prep_messages = []
-
 # Main app logic for defense preparation
 def app():
+    # Ensure defense_prep_messages is initialized in session state
+    if "defense_prep_messages" not in st.session_state:
+        st.session_state.defense_prep_messages = []
+
     # File upload for defense preparation
     uploaded_file = st.file_uploader("Upload your thesis/proposal document (Text files only):", type=["txt", "docx", "pdf"])
 
@@ -89,3 +89,6 @@ def app():
 
         # Add assistant's response to chat history
         st.session_state.defense_prep_messages.append({"role": "assistant", "content": reply})
+
+# Uncomment this line to run the app directly if needed
+# app()
