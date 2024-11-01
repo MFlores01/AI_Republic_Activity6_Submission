@@ -31,6 +31,20 @@ Upload datasets and receive insightful data visualizations. Siklab suggests the 
 ### 🛡️ Defense Preparation
 Prepare confidently for your research defense! Siklab offers in-depth feedback on your document, including potential questions, critique points, and areas of improvement.
 
+## Interface Previews
+
+### Research Paper Assistance
+![Research Paper Assistance](images/research_paper_assistance.png)
+
+### Title Generation
+![Title Generation](images/title_generation.png)
+
+### Data Analysis & Visualization
+![Data Analysis & Visualization](images/data_analysis.png)
+
+### Defense Preparation
+![Defense Preparation](images/defense_preparation.png)
+
 ---
 
 ## Project Structure
