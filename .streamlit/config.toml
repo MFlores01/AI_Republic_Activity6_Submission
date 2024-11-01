@@ -2,6 +2,6 @@
 primaryColor = "#FF6B3B"  # Siklab theme color
 backgroundColor = "#FFFFFF"  # Main background color
 secondaryBackgroundColor = "#FFF5EB"  # Sidebar background color
-textColor = "#FAFAF0"  # Dark grey for readability
+textColor = "#000000"  # Dark grey for readability
 font = "serif"
 base = "light"  # Light theme base
