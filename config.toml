@@ -1,0 +1,18 @@
+[theme]
+# Primary accent color for interactive elements
+primaryColor = "#FF6B3B"  # Warm orange-red color matching the flame
+
+# Background color for the main content area
+backgroundColor = "#FFFFFF"  # White background to keep it clean and vibrant
+
+# Background color for sidebar and most interactive widgets
+secondaryBackgroundColor = "#FFF5EB"  # Light cream background to match the warm tones
+
+# Color used for almost all text
+textColor = "#333333"  # Dark grey for readability
+
+# Font family for all text in the app, except code blocks
+font = "serif"
+
+# Base Streamlit theme to inherit from
+base = "light"
