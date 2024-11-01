@@ -12,8 +12,6 @@ Welcome to **Siklab**—your comprehensive research hub designed to assist stude
 - [Getting Started](#getting-started)
 - [API Key Configuration](#api-key-configuration)
 - [Running the App](#running-the-app)
-- [Contributing](#contributing)
-- [Acknowledgments](#acknowledgments)
 
 ---
 
