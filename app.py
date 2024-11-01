@@ -11,6 +11,12 @@ from streamlit_option_menu import option_menu
 # Configure Streamlit page
 st.set_page_config(page_title="Siklab Research Hub", page_icon="📘", layout="wide")
 
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+    # Initial greeting message
+    st.session_state.messages.append({"role": "assistant",
+                                      "content": "Hi! I'm Casein Nitrate. I'm here to help you with data visualizations and analysis. Ask me about charts, data insights, or code examples!"})
+
 def set_background(image_path):
     with open(image_path, "rb") as image_file:
         # Encode the image as base64 and decode it to a string
