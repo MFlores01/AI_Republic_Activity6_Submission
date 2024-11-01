@@ -41,7 +41,7 @@ st.markdown(
     }
     /* General text color for consistency */
     .css-10trblm, .css-1q8dd3e, .stTextInput, .stTextArea, .stSelectbox, h1, h2, h3, h4, h5, h6, p {
-        color: #FAFAF0;  /* Off-white color for all text elements */
+        color: #000000;  /* Off-white color for all text elements */
     }
     </style>
     """, unsafe_allow_html=True
