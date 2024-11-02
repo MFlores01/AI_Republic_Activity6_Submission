@@ -1,4 +1,4 @@
-# ![Siklab: A Research Assistant Hub](images/Siklab.png) 
+# ![Siklab: A Research Assistant Hub](images/Siklab_whitebg.png) 
 
 Welcome to **Siklab**—your comprehensive research hub designed to assist students, researchers, and academics at every stage of their research journey. Siklab provides tools for title generation, research paper assistance, data analysis, and defense preparation, all in one seamless, user-friendly interface.
 
