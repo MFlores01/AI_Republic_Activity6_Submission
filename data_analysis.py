@@ -56,7 +56,6 @@ def suggest_chart_type(data):
 
     return suggestions
 
-
 # Helper function to generate and display a selected chart type
 def generate_chart(chart_type, data):
     buf = BytesIO()
@@ -200,6 +199,7 @@ def app():
         """,
         unsafe_allow_html=True
     )
+    #st.write("Casein Nitrate is here to help you understand your data with analysis and visualizations.")
 
     # Data file upload
     uploaded_file = st.file_uploader("Upload your data file (CSV, Excel, JSON):", type=["csv", "xlsx", "json"])
@@ -246,11 +246,16 @@ def app():
 
             else:
                 # General response from OpenAI
-                reply = get_chart_suggestion_from_openai(user_input)
+                response = openai.ChatCompletion.create(
+                    model="gpt-4o-mini",
+                    messages=[{"role": "system", "content": system_prompt}] + st.session_state.messages,
+                    max_tokens=500,
+                    temperature=0.5
+                )
+                reply = response.choices[0].message['content'].strip()
 
         else:
-            # General response without dataset
-            reply = get_chart_suggestion_from_openai(user_input)
+            reply = "Please upload a dataset for me to analyze and suggest visualizations."
 
         # Append assistant's reply
         st.session_state.messages.append({"role": "assistant", "content": reply})
@@ -258,9 +263,11 @@ def app():
     # Display conversation history with custom icons
     for message in st.session_state.messages:
         if message["role"] == "assistant":
+            # Use custom icon for the assistant
             with st.chat_message("assistant", avatar="images/Casein_Nitrate.jpg"):
                 st.markdown(message["content"])
         else:
+            # Use custom icon for the user
             with st.chat_message("user", avatar="images/User.jpg"):
                 st.markdown(message["content"])
 
