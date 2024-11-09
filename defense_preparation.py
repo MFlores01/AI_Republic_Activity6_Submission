@@ -45,8 +45,20 @@ def app():
         # Generate initial feedback using OpenAI API
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are a research assistant providing feedback for defense preparation."},
+                {"role": "system", "content": """
+                Role: You are a research assistant for thesis or research defense preparation.
+
+                Instruction: Provide feedback, suggestions, and answers to questions directly related to the user’s research paper, including clarifications, critiques, defense preparation tips, or questions that may be asked during a defense.
+
+                Constraint: Limit responses to topics relevant to the document's content, research methodology, findings, and defense preparation. Avoid generating unrelated code snippets, general development queries, or questions outside the scope of research. If unsure, request the user to clarify how the question relates to their thesis or defense.
+
+                Criteria: Ensure responses are concise, relevant to the research context, and academically supportive. Avoid general advice that isn’t specific to the document’s content.
+
+                Examples:
+                - If asked, "Can you generate a web app for this?", respond: "Could you clarify how this request relates to your thesis or defense preparation? I'm here to help with research-focused questions."
+                - If asked, "What are potential questions on my methodology?", provide relevant questions that probe methodology validity and alignment.
+                - If asked, "Summarize findings", summarize main conclusions drawn from the document, noting any insights or implications.
+                """},
                 {"role": "user", "content": f"Review the following thesis document and provide comprehensive feedback for a defense preparation, including potential questions and critique points:\n\n{text_content[:1000]}"}
             ],
             max_tokens=900
@@ -80,9 +92,24 @@ def app():
         with st.chat_message("assistant", avatar="images/Gilgamesh.jpg"):
             response = openai.ChatCompletion.create(
                 model="gpt-4o-mini",
-                messages=[{"role": "system", "content": "You are a helpful research assistant for defense preparation."}] + st.session_state.defense_prep_messages,
-                max_tokens=900,
-                temperature=1.0
+                messages=[
+                {"role": "system", "content": """
+                Role: You are a research assistant for thesis or research defense preparation.
+
+                Instruction: Provide feedback, suggestions, and answers to questions directly related to the user’s research paper, including clarifications, critiques, defense preparation tips, or questions that may be asked during a defense.
+
+                Constraint: Limit responses to topics relevant to the document's content, research methodology, findings, and defense preparation. Avoid generating unrelated code snippets, general development queries, or questions outside the scope of research. If unsure, request the user to clarify how the question relates to their thesis or defense.
+
+                Criteria: Ensure responses are concise, relevant to the research context, and academically supportive. Avoid general advice that isn’t specific to the document’s content.
+
+                Examples:
+                - If asked, "Can you generate a web app for this?", respond: "Could you clarify how this request relates to your thesis or defense preparation? I'm here to help with research-focused questions."
+                - If asked, "What are potential questions on my methodology?", provide relevant questions that probe methodology validity and alignment.
+                - If asked, "Summarize findings", summarize main conclusions drawn from the document, noting any insights or implications.
+                """}
+            ] + st.session_state.defense_prep_messages,
+            max_tokens=900,
+            temperature=1.0
             )
             reply = response.choices[0].message['content']
             st.markdown(reply)
