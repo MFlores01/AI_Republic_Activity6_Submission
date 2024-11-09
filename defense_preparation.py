@@ -45,7 +45,7 @@ def app():
         # Generate initial feedback using OpenAI API
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
-                {"role": "system", "content": """
+                [{"role": "system", "content": """
                 Role: You are a research assistant for thesis or research defense preparation.
 
                 Instruction: Provide feedback, suggestions, and answers to questions directly related to the user’s research paper, including clarifications, critiques, defense preparation tips, or questions that may be asked during a defense.
