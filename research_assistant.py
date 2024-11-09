@@ -64,5 +64,5 @@ def app():
             st.warning("Please enter your question or description for Gilgamesh.")
 
     # Optional: Button for generating a conceptual framework image if that section is selected
-    if section == "Conceptual Framework" and st.button("Generate Conceptual Framework Example"):
+    if section == "Conceptual Framework":
         st.image("/path/to/generated_conceptual_framework.png")  # Placeholder path for conceptual framework image
