@@ -49,7 +49,7 @@ def app():
                 {"role": "system", "content": "You are a research assistant providing feedback for defense preparation."},
                 {"role": "user", "content": f"Review the following thesis document and provide comprehensive feedback for a defense preparation, including potential questions and critique points:\n\n{text_content[:1000]}"}
             ],
-            max_tokens=700
+            max_tokens=900
         )
         feedback = response.choices[0].message['content'].strip()
         st.write("Defense Preparation Feedback:")
@@ -81,7 +81,7 @@ def app():
             response = openai.ChatCompletion.create(
                 model="gpt-4o-mini",
                 messages=[{"role": "system", "content": "You are a helpful research assistant for defense preparation."}] + st.session_state.defense_prep_messages,
-                max_tokens=700,
+                max_tokens=900,
                 temperature=1.0
             )
             reply = response.choices[0].message['content']
